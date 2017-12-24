@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  street: MyString
+  area: MyString
+  saved: false
+
+two:
+  street: MyString
+  area: MyString
+  saved: false
