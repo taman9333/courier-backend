@@ -8,7 +8,7 @@ class Order < ApplicationRecord
 	# belongs_to :billing_address, class_name: "Address"
 	belongs_to :client
 
-	validates :category, :weight, :dimentions, :billing_address, :delivery_date, presence: true 
+	validates :category, :weight, :dimensions, :billing_address, :delivery_date, presence: true 
 
 end
 
