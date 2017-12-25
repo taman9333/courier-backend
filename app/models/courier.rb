@@ -3,6 +3,7 @@ class Courier < ApplicationRecord
   # , dependent: :destroy
   has_many :bids
   # , dependent: :destroy
-  validates :username, :email, :password, :password_confirmation, :phone, presence: true
+  has_many :notifications, as: :user
+  validates :username, :email, :phone, presence: true
   validates :email, :username, uniqueness: true
 end

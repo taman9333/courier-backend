@@ -1,5 +1,6 @@
 class Address < ApplicationRecord
-	has_many :orders
+	has_many :pickups , class_name: "Orders", foreign_key: :pickup_address
+	has_many :drop_offs , class_name: "Orders", foreign_key: :drop_off_address
 	belongs_to :client
-	validates :street, :area, :saved, :apartment_number, :building_number, presence: true 
+	validates :street, :area, :apartment_number, :building_number, presence: true 
 end

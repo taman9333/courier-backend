@@ -6,7 +6,7 @@ class CreateAddresses < ActiveRecord::Migration[5.1]
       t.string :street
       t.string :area
       t.boolean :saved, default: false
-      t.references :client, foreign_key: true
+      t.references :client,  index: true, foreign_key: true
 
 
       t.timestamps
