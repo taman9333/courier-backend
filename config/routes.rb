@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :couriers
+  resources :courier_registerations, only: [:create]
+  post 'courierlogin', to: 'courier_sessions#create'
+  # resources :courier_sessions, only: [:create]
 end
