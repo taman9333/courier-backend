@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :couriers
-  resources :courier_registerations, only: [:create]
-  post 'courierlogin', to: 'courier_sessions#create'
-  # resources :courier_sessions, only: [:create]
+  # namespace :courier do
+    # resources :couriers
+    post 'login', to: 'courier_sessions#create'
+    post 'register', to: 'courier_registrations#create'
+    get 'all', to: 'couriers#index'
+  # end
 end
