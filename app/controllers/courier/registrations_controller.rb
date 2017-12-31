@@ -1,14 +1,15 @@
 class Courier::RegistrationsController < ApplicationController
-    before_action :downcase_email
+    # before_action :downcase_email
     
-    def create(courier_params)
+    def create
         @courier = Courier.new courier_params
 
         if @courier.save
-            render json: {status: "SUCCESS", message: "Courier has been created", courier: @courier}, status: :ok
+            render json: {status: "SUCCESS", message: "You're account has been created Successfully. Please check the confirmation link in your email."}, status: :ok
              #Invoke send email method here
         else
-            render json: {status: "ERROR", message: "Courier has not been created", errors:@courier.errors.full_messages}, status: :unauthorized
+            # render json: {status: "ERROR", message: "You have not been regesitered yet", error:@courier.errors.full_messages}, status: :unprocessable_entity
+            render json: {status: "ERROR", error: "You have not been regesitered yet"}, status: :unprocessable_entity
         end
 
     end
@@ -19,8 +20,11 @@ class Courier::RegistrationsController < ApplicationController
       params.require(:courier).permit(:username, :email, :password, :password_confirmation, :phone, :img)
     end
 
-    def downcase_email
-        courier_params.email = courier_params.email.delete(' ').downcase
-    end
+    # def downcase_email
+    #     courier_params.email = courier_params.email.delete(' ').downcase
+    # end
 
 end
+
+  
+  
