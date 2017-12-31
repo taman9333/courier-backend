@@ -1,6 +1,6 @@
-class CourierSessionsController < ApplicationController
+class Courier::SessionsController < ApplicationController
   def create
-    @courier = Courier.find_by(email: params[:email])
+    @courier = Courier.find_by email: params[:email]
     if @courier && @courier.authenticate(params[:password])
       render json: response_obj(@courier), status: :ok
     else
@@ -11,8 +11,8 @@ class CourierSessionsController < ApplicationController
   private
   def response_obj(courier)
     {
-      auth_token: JsonWebToken.encode({courier_id: courier.id}),
-      @courier
+      auth_token: JsonWebToken.encode({courier_id: courier.id})
+      courier
     }
   end
 
