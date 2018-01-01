@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   namespace :courier do
     post 'login', to: 'sessions#create'
     post 'register', to: 'registrations#create'
@@ -15,6 +16,18 @@ Rails.application.routes.draw do
     delete 'couriers', to: 'couriers#destroy'
   end
 
+  get 'client/login', to: 'client_sessions#new'
+  post 'client/sessions', to: 'client_sessions#create'
+
+  # post '/orders', to: 'orders#create'
+
+  resources :clients_registrations, only: [:new, :create]
+  # get 'client/show', to: 'clients#show'
+
+  resources :clients do
+    resources :orders
+  end
+  
 end
 
 

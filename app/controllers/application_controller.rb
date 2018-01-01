@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+
 	require 'json_web_token'
 
 	def authenticate_client!
@@ -19,7 +20,7 @@ class ApplicationController < ActionController::API
 
 	private
 	def jwt_token
-		@jwt_token ||= request.headers['Authentication-Token']
+		@jwt_token ||= request.headers['jwtToken']
 	end
 
 	def session_info

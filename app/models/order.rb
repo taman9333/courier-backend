@@ -8,8 +8,9 @@ class Order < ApplicationRecord
 	# belongs_to :billing_address, class_name: "Address"
 	belongs_to :client
 
-	validates :category, :weight, :dimensions, :billing_address, :delivery_date, presence: true 
+	accepts_nested_attributes_for :pickup_address
+	accepts_nested_attributes_for :drop_off_address
+
+	validates :category, :weight, :drop_off_address, :pickup_address, :dimensions, :billing_address, :delivery_date, presence: true
 
 end
-
-
