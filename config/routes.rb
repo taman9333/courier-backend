@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     #  which http verb? 'forgot_password', to: 'profile#forgot_password'
     patch 'reset_password', to: 'profile#reset_password'
   end
+  
+  index 'open_auctoins', to 'auctions#open_auctions'
 
   namespace :admin do
     get 'couriers', to: 'couriers#index'

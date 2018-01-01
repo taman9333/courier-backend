@@ -19,15 +19,15 @@ class ApplicationController < ActionController::API
 
 	private
 	def jwt_token
-		@jwt_token || = request.headers['Authentication-Token']
+		@jwt_token ||= request.headers['Authentication-Token']
 	end
 
 	def session_info
-		@session_info || = JsonWebToken.decode(jwt_token)
+		@session_info ||= JsonWebToken.decode(jwt_token)
 	end
 
 	def current_courier
-		@current_courier || = Courier.find session_info[:courier_id]
+		@current_courier ||= Courier.find session_info[:courier_id]
 	rescue ActiveRecord::RecordNotFound
 		nil	
 	end
