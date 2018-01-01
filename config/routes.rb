@@ -3,12 +3,20 @@ Rails.application.routes.draw do
   get 'client/login', to: 'client_sessions#new'
   post 'client/sessions', to: 'client_sessions#create'
 
+
   # post '/orders', to: 'orders#create'
 
   resources :clients_registrations, only: [:new, :create]
   # get 'client/show', to: 'clients#show'
 
-  resources :clients do
-    resources :orders
+
+  resource :clients, only:[:show ] do
+    collection do
+      resources :orders
+    end
   end
+
+
+  get 'client/addresses',to:'addresses#index'
+
 end
