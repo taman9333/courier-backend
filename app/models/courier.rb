@@ -1,9 +1,15 @@
 class Courier < ApplicationRecord
+  has_secure_password
+	attr_reader :password
+  attr_accessor :password_confirmation
+
   has_many :deliveries
-  # , dependent: :destroy
   has_many :bids
-  # , dependent: :destroy
   has_many :notifications, as: :user
-  validates :username, :email, :phone, presence: true
+
+  validates :username, :email, :phone, :password, :password_confirmation, presence: true
+  validates :password, confirmation: true
   validates :email, :username, uniqueness: true
 end
+
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171226100144) do
+ActiveRecord::Schema.define(version: 20171228100447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,11 +69,14 @@ ActiveRecord::Schema.define(version: 20171226100144) do
   create_table "couriers", force: :cascade do |t|
     t.string "username"
     t.string "email"
-    t.string "hashed_password"
+    t.string "password_digest"
     t.string "img"
     t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
   end
 
   create_table "deliveries", force: :cascade do |t|
@@ -100,7 +103,7 @@ ActiveRecord::Schema.define(version: 20171226100144) do
   create_table "orders", force: :cascade do |t|
     t.string "category"
     t.decimal "weight"
-    t.string "dimensions"
+    t.string "dimentions"
     t.date "delivery_date"
     t.bigint "client_id"
     t.string "billing_address"
