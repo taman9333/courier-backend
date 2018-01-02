@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     patch 'reset_password', to: 'profile#reset_password'
   end
   
-  get 'open_auctoins', to 'auctions#open_auctions'
+  get 'open_auctoins', to: 'auctions#open_auctions'
 
   namespace :admin do
     get 'couriers', to: 'couriers#index'

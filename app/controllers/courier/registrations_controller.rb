@@ -8,7 +8,7 @@ class Courier::RegistrationsController < ApplicationController
             render json: {status: "SUCCESS", message: "You're account has been created Successfully. Please check the confirmation link in your email."}, status: :ok
              #Invoke send email method here
         else
-            render json: {status: "ERROR", message: "You have not been regesitered yet", errors:courier.errors.full_messages}, status: :unprocessable_entity
+            render json: {status: "ERROR", message: "You have not been regesitered yet", errors:@courier.errors.full_messages}, status: :unprocessable_entity
         end
 
     end
