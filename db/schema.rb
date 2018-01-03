@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 20171228100447) do
   create_table "orders", force: :cascade do |t|
     t.string "category"
     t.decimal "weight"
-    t.string "dimentions"
+    t.string "dimensions"
     t.date "delivery_date"
     t.bigint "client_id"
     t.string "billing_address"

@@ -16,7 +16,7 @@ class Courier::ProfileController < ApplicationController
   # end
 
   # # def forgot_password
-    
+
   # # end
 
   # # what about authentication here? change pw vs email link to reset
@@ -39,4 +39,3 @@ class Courier::ProfileController < ApplicationController
   #   params.require(:old_password, :new_password, :new_password_conformation, :courier).permit(:username, :email, :password, :password_confirmation, :phone, :img)
   # end
 end
-
