@@ -1,4 +1,5 @@
 class Order < ApplicationRecord
+	include Filterable
 	has_many :auctions
 	# , dependent: :destroy
 	has_one :delivery

@@ -9,8 +9,10 @@ Rails.application.routes.draw do
     patch 'reset_password', to: 'profile#reset_password'
   end
   
-  get 'open_auctoins', to: 'auctions#open_auctions'
-
+  # maybe we should edit this to get the info from the orders controller instead
+  get 'filtered_open_auctoins', to: 'auctions#filtered_open_auctions'
+  get 'auctoin', to: 'auctions#show'
+  
   namespace :admin do
     get 'couriers', to: 'couriers#index'
     delete 'couriers', to: 'couriers#destroy'
