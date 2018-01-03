@@ -1,4 +1,5 @@
 class Bid < ApplicationRecord
+  include Filterable
   validates :price, presence: true
   belongs_to :courier
   belongs_to :auction

@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_client!
   def create
     order = Order.new order_params
     if order.save
