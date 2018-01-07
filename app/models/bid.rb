@@ -15,7 +15,7 @@ class Bid < ApplicationRecord
     return if Bid.where(auction_id: self.auction_id).minimum(:price) == nil
 
     x = Bid.where(auction_id: self.auction_id).minimum(:price).to_f
-    if self.price >= x
+    if self.price > x-1
       errors.add(:base, "You must enter a lower price.")
     end
   end

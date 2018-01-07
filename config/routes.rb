@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
 
-  namespace :courier do
+  namespace :courier, defaults:{format: :json} do
     post 'login', to: 'sessions#create'
     post 'register', to: 'registrations#create'
     patch 'update_profile', to: 'profile#update'
     get 'profile', to: 'profile#show'
     #  which http verb? 'forgot_password', to: 'profile#forgot_password'
     patch 'reset_password', to: 'profile#reset_password'
+    get 'deliveries/index', to: 'deliveries#index'
+    get 'deliveries/:id', to: 'deliveries#show'
   end
-  
+
   get 'open_auctoins', to: 'auctions#open_auctions'
 
   namespace :admin do
@@ -30,10 +32,16 @@ Rails.application.routes.draw do
     collection do
       resources :orders
     end
+
+    collection do
+        resources :deliveries
+    end
   end
+
+
+  post '/bid/create', to:'bids#create'
+  post '/bid/reject', to:'bids#reject'
 
   get 'client/addresses',to:'addresses#index'
 
 end
-
-
