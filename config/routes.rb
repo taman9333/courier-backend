@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
   
   # maybe we should edit this to get the info from the orders controller instead
-  get 'filtered_open_auctoins', to: 'auctions#filter_open_auctions'
+  post 'filtered_open_auctoins', to: 'auctions#filter_open_auctions'
   get 'auctoin', to: 'auctions#show_order'
   
   namespace :admin do
