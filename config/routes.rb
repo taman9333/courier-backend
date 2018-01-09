@@ -5,14 +5,10 @@ Rails.application.routes.draw do
     post 'register', to: 'registrations#create'
     patch 'update_profile', to: 'profile#update'
     get 'profile', to: 'profile#show'
-    #  which http verb? 'forgot_password', to: 'profile#forgot_password'
     patch 'reset_password', to: 'profile#reset_password'
-    post 'filtered_open_auctoins', to: 'auctions#filter_open_auctions'
-    get 'auction', to: 'auctions#show_order'
+    post 'filtered_open_auctions', to: 'auctions#filter_open_auctions'
   end
-  
-  # maybe we should edit this to get the info from the orders controller instead
-  
+
   
   namespace :admin do
     get 'couriers', to: 'couriers#index'

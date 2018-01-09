@@ -7,36 +7,40 @@ class Courier::ProfileController < ApplicationController
   end
 
   # # # PATCH/PUT /couriers/1.json
-  # def update
-  #     if @current_courier.update(courier_params)
-  #       render json: {status: "SUCCESS", message: "Your profile has been updated", courier: courier}, status: :ok
-  #     else
-  #       render json: {status: "ERROR", error: "Your profile hasn't been updated"}, status: :unprocessable_entity
-  #     end
-  # end
+  def update (params)
+      if @current_courier.update_attributes(params)
+        render json: {status: "SUCCESS", message: "Your profile has been updated", courier: @current_courier}, status: :ok
+      else
+        render json: {status: "ERROR", error: "Your profile hasn't been updated"}, status: :unprocessable_entity
+      end
+  end
 
-  # # def forgot_password
-    
-  # # end
+  # def forgot_password
+    # send email
+  # end
 
   # # what about authentication here? change pw vs email link to reset
-  # def reset_password(courier_params)
-  #   if @old_password == @current_courier.password && @new_password == @new_password_conformation
-  #     @current_courier.password = @new_password
-  #     render json: {status: "SUCCESS", message: "Password has been updated", courier: courier}, status: :ok
-  #   else
-  #     render json: {status: "ERROR", message: "Wrong Password", errors:courier.errors.full_messages}, status: :wrong_password
-  #   end
-  #   end
-  # end
+  def reset_password (params)
+    if @current_courier.authenticate(params[:password]) && params.new_password === params.new_password_conformation
+      @current_courier.update_attributes(params[:password])
+      render json: {status: "SUCCESS", message: "Password has been updated"}, status: :ok
+    else
+      render json: {status: "ERROR", message: "Wrong Password", errors:courier.errors.full_messages}, status: :wrong_password
+    end
+  end
 
   # private
-  #   # def set_courier
-  #   #   @courier = Courier.find(params[:id])
-  #   # end
+    # def set_courier
+    #   @courier = Courier.find(params[:id])
+    # end
 
   # def courier_params
-  #   params.require(:old_password, :new_password, :new_password_conformation, :courier).permit(:username, :email, :password, :password_confirmation, :phone, :img)
+  #   params.require(:username, :email, :phone, :img)
+  # end
+  # def password_params
+  #   params.require(:old_password, :new_password, :new_password_conformation)
   # end
 end
+
+
 
