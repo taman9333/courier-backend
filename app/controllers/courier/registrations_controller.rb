@@ -16,8 +16,11 @@ class Courier::RegistrationsController < ApplicationController
     private
 
     def courier_params
-      params.require(:courier).permit(:username, :email, :password, :password_confirmation, :phone, :img)
+        params.permit(:username, :email, :password, :password_confirmation, :phone, :img)
     end
+    # def courier_params
+    #   params.require(:courier).permit(:username, :email, :password, :password_confirmation, :phone, :img)
+    # end
 
     # def downcase_email
     #     courier_params.email = courier_params.email.delete(' ').downcase
