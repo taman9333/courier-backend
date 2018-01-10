@@ -9,8 +9,8 @@ class Courier::ProfileController < ApplicationController
   # # # PATCH/PUT /couriers/1.json
   def update
     # @courier = @current_courier
-      if @current_courier.update_attributes(courier_params)
-        render json: {status: "SUCCESS", message: "Your profile has been updated", courier: @courier}, status: :ok
+      if @current_courier.update! courier_params
+        render json: {status: "SUCCESS", message: "Your profile has been updated", courier: @current_courier}, status: :ok
       else
         render json: {status: "ERROR", message: "Your profile hasn't been updated"}, status: :unprocessable_entity
       end

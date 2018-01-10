@@ -10,7 +10,7 @@ class Courier < ApplicationRecord
 
   mount_uploader :img, AvatarUploader
 
-  validates :username, :email, :phone, :password, :password_confirmation, presence: true
+  validates :username, :email, :phone, presence: true
   validates :password, confirmation: true
   validates :email, :username, uniqueness: true
 end
