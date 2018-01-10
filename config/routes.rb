@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     patch 'reset_password', to: 'profile#reset_password'
     get 'deliveries/index', to: 'deliveries#index'
     get 'deliveries/:id', to: 'deliveries#show'
+    post 'deliveries/:id/update', to: 'deliveries#update_status'
+    post 'search', to:'search#filter'
+    get 'auctions', to:'search#index'
   end
 
   get 'open_auctoins', to: 'auctions#open_auctions'
@@ -28,7 +31,7 @@ Rails.application.routes.draw do
   # get 'client/show', to: 'clients#show'
 
 
-  resource :clients, only:[:show ] do
+  resource :clients, only:[:show ], defaults:{format: :json} do
     collection do
       resources :orders
     end
@@ -38,10 +41,13 @@ Rails.application.routes.draw do
     end
   end
 
+  patch '/client/notification/check', to:'notifications#check'
 
   post '/bid/create', to:'bids#create'
   post '/bid/reject', to:'bids#reject'
 
   get 'client/addresses',to:'addresses#index'
+
+  get 'client/notifications', to:'notifications#index'
 
 end

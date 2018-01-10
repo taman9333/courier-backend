@@ -4,9 +4,9 @@ class OrdersController < ApplicationController
 
   def create
     order = Order.new order_params
-    if order.save
-      x = order.auctions.create(bid_deadline:params[:order][:bid_deadline], status:"open")
-      AuctionDeadlineJob.set(wait: 30.minutes).perform_later(x)
+    if order.save!
+      x = order.auctions.create!(bid_deadline:params[:order][:bid_deadline], status:"open")
+      AuctionDeadlineJob.set(wait: 10.seconds).perform_later(x, order)
       render json:{status: "SUCCESS", message: "Order has been created", order_id:order.id, order: order, pickup_address: order.pickup_address, drop_off_address: order.drop_off_address}, status: :ok
     else
       render json:{status: "ERROR", message: "Order has not been created", errors:order.errors.full_messages}, status: :unprocessable_entity
