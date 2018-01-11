@@ -22,5 +22,5 @@ class Auction < ApplicationRecord
 		}
 	end
 
-
+end
 
