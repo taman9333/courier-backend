@@ -48,6 +48,6 @@ Rails.application.routes.draw do
 
   get 'client/addresses',to:'addresses#index'
 
-  get 'client/notifications', to:'notifications#index'
+  get 'client/notifications', to:'notifications#index', defaults:{format: :json}
 
 end
