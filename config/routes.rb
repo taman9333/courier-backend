@@ -1,13 +1,20 @@
 Rails.application.routes.draw do
 
-  namespace :courier do
+  namespace :courier, defaults:{format: :json} do
     post 'login', to: 'sessions#create'
     post 'register', to: 'registrations#create'
     patch 'update_profile', to: 'profile#update'
     get 'profile', to: 'profile#show'
     patch 'reset_password', to: 'profile#reset_password'
-    post 'filtered_open_auctions', to: 'auctions#filter_open_auctions'
+    get 'deliveries/index', to: 'deliveries#index'
+    get 'deliveries/:id', to: 'deliveries#show'
+    post 'deliveries/:id/update', to: 'deliveries#update_status'
+    post 'search', to:'search#filter'
+    get 'auctions', to:'search#index'
+    # post 'filtered_open_auctions', to: 'auctions#filter_open_auctions'
   end
+
+  # get 'open_auctoins', to: 'auctions#open_auctions'
 
   
   namespace :admin do
@@ -25,14 +32,23 @@ Rails.application.routes.draw do
   # get 'client/show', to: 'clients#show'
 
 
-  resource :clients, only:[:show ] do
+  resource :clients, only:[:show ], defaults:{format: :json} do
     collection do
       resources :orders
     end
+
+    collection do
+        resources :deliveries
+    end
   end
+
+  patch '/client/notification/check', to:'notifications#check'
+
+  post '/bid/create', to:'bids#create'
+  post '/bid/reject', to:'bids#reject'
 
   get 'client/addresses',to:'addresses#index'
 
+  get 'client/notifications', to:'notifications#index', defaults:{format: :json}
+
 end
-
-

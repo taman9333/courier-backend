@@ -2,6 +2,16 @@ class ApplicationController < ActionController::API
 
 	require 'json_web_token'
 
+	def authenticate_request!
+		if !current_client.present?
+			if !current_courier.present?
+				render json: {message: 'Your account had been deactivated'}, status: :unauthorized
+			end
+		end
+	rescue JWT::VerificationError, JWT::DecodeError
+		render json: {message: 'You are not Authorized'}, status: :unauthorized
+	end
+
 	def authenticate_client!
 		if !current_client.present?
 			render json: {message: 'You must be logged in first'}, status: :unauthorized
@@ -30,7 +40,7 @@ class ApplicationController < ActionController::API
 	def current_courier
 		@current_courier ||= Courier.find session_info[:courier_id]
 	rescue ActiveRecord::RecordNotFound
-		nil	
+		nil
 	end
 
 	def current_client
@@ -39,6 +49,3 @@ class ApplicationController < ActionController::API
 		nil
 	end
 end
-
-
-  

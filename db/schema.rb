@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171228100447) do
+ActiveRecord::Schema.define(version: 20180110150323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20171228100447) do
     t.bigint "auction_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "refused", default: false
     t.index ["auction_id"], name: "index_bids_on_auction_id"
     t.index ["courier_id"], name: "index_bids_on_courier_id"
   end
@@ -97,13 +98,16 @@ ActiveRecord::Schema.define(version: 20171228100447) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "auction_id"
+    t.boolean "check", default: false
+    t.index ["auction_id"], name: "index_notifications_on_auction_id"
     t.index ["user_type", "user_id"], name: "index_notifications_on_user_type_and_user_id"
   end
 
   create_table "orders", force: :cascade do |t|
     t.string "category"
     t.decimal "weight"
-    t.string "dimentions"
+    t.string "dimensions"
     t.date "delivery_date"
     t.bigint "client_id"
     t.string "billing_address"

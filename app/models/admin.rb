@@ -1,6 +1,6 @@
 class Admin < ApplicationRecord
 	validates :name, :email, :password, :password_confirmation, presence: true 
-	validates :email, uniqueness: true, 
+	validates :email, uniqueness: true
 	# validates :email, format:  { with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i, multiline: true}
 
 	validates :password, confirmation: true
