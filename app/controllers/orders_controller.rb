@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
 
   before_action :authenticate_client!, only:[:create]
   before_action :authenticate_request!, only:[:show]
+  before_action :authenticate_client!, only:[:index]
 
   def create
     order = Order.new order_params
@@ -38,6 +39,11 @@ class OrdersController < ApplicationController
     else
       render json:{status: "Failure", message:"Order you are requesting had been closed"}, status: :unprocessable_entity
     end
+  end
+
+  def index
+    @orders = @current_client.orders.reverse
+    render :index
   end
 
   private

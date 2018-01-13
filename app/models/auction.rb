@@ -1,9 +1,4 @@
 class Auction < ApplicationRecord
-
-	has_many :bids
-	belongs_to :order
-	validates :bid_deadline, :status, presence: true
-
 	has_many :notifications
 	searchkick
 	after_commit :reindex_product
@@ -22,5 +17,11 @@ class Auction < ApplicationRecord
 		}
 	end
 
+	has_many :bids
+	# , dependent: :destroy
+	belongs_to :order
 
 
+
+	validates :bid_deadline, :status, presence: true
+end
