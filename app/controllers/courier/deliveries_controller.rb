@@ -9,7 +9,7 @@ class Courier::DeliveriesController < ApplicationController
   def show
     delivery = Delivery.find(params[:id])
     if @current_courier.id == delivery.courier_id
-      render json:{delivery:delivery, order:delivery.order, pickup:delivery.order.pickup_address, drop_off:delivery.order.drop_off_address, bid:delivery.order.auctions.find_by(status:"closed").bids.where(refused:false).last, client:delivery.order.client}, status: :ok
+      render json:{delivery:delivery, order:delivery.order, pickup:delivery.order.pickup_address, drop_off:delivery.order.drop_off_address, bid:delivery.order.auctions.find_by(status:"closed").bids.where(refused:false).last, client:delivery.order.client, bid_deadline:delivery.order.auctions.find_by(status:"closed").bid_deadline}, status: :ok
     else
       render json:{status:"Failure", message:"you are not authoreized to show this page"}, status: :unauthorized
     end

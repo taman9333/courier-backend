@@ -3,14 +3,16 @@ class BidsController < ApplicationController
   before_action :authenticate_client!, only:[:reject]
 
   def create
-
     # prevCourier = Auction.find(params[:bid][:auction_id]).bids.last.courier if Auction.find(params[:bid][:auction_id]).bids.last != nil
     if Auction.find(params[:bid][:auction_id]).bids.last != nil
       prevCourier = Auction.find(params[:bid][:auction_id]).bids.last.courier
     end
     bid = @current_courier.bids.build bid_params
     if bid.save
-      prevCourier.notifications.create(body:"Someone make a bid lower than yours for Order category: #{bid.auction.order.category}, Client: #{bid.auction.order.client.username}, Pickup Area: #{bid.auction.order.pickup_address.area}") if prevCourier != nil
+      if prevCourier != nil
+        z = prevCourier.notifications.create(body:"Someone make a bid lower than yours for Order No. #{bid.auction.order.id}", auction_id:bid.auction.id)
+        ActionCable.server.broadcast "courier_notifications:#{prevCourier.id}", {notification: z, order_id: bid.auction.order.id}
+      end
       render json:{status:"Success", message:"Your Bid has been created Successfully", bid:bid}, status: :ok
     else
       render json:{status:"Failure", message:"Bid has not been created", errors:bid.errors.full_messages}, status: :unprocessable_entity

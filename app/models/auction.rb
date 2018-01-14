@@ -7,7 +7,7 @@ class Auction < ApplicationRecord
     Auction.reindex
   end
 
-	scope :search_import, ->{where(status:"closed").includes(:order)}
+	scope :search_import, ->{where(status:"open").includes(:order)}
 
 	def search_data
 		{
