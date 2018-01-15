@@ -11,6 +11,7 @@ class Auction < ApplicationRecord
 
 	def search_data
 		{
+			status:self.status,
 			pickup:order.pickup_address.area,
 			category:order.category,
 			weight:order.weight

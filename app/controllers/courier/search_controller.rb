@@ -17,6 +17,7 @@ class Courier::SearchController < ApplicationController
         obj[item] = params[item]
         end
       end
+      obj["status"] = "open"
     end
     @auctions = Auction.search(where:obj).sort.reverse
     render :filter
