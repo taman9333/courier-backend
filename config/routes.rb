@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     post 'search', to:'search#filter'
     get 'auctions', to:'search#index'
     get 'notifications', to:'notifications#index'
-    patch 'notification/check', to:'notifications#check' 
+    patch 'notification/check', to:'notifications#check'
     # post 'filtered_open_auctions', to: 'auctions#filter_open_auctions'
   end
 
@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     end
   end
 
-  patch '/client/notification/check', to:'notifications#check'
+  patch '/client/notification/check', to:'notifications#check', defaults:{format: :json}
 
   post '/bid/create', to:'bids#create'
   post '/bid/reject', to:'bids#reject'
