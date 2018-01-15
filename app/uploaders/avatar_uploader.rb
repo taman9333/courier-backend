@@ -6,7 +6,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
-  storage :fog
+  # storage :fog
+
+  #kan feha hena bta3 sha3'al w raaaaaaaa7
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
