@@ -13,7 +13,7 @@ class DeliveriesController < ApplicationController
         auction.update_attributes(status: "closed")
         z = courier.notifications.create(body: "You have won the auction of Order No. #{order.id}", auction_id:auction.id)
         ActionCable.server.broadcast "courier_notifications:#{courier.id}", {notification: z, delivery_id: Delivery.last.id}
-        render json: {status:"Success", message:"Winning Courier is #{Bid.find(bid_id).courier.username}", orderStatus:"ready"}
+        render json: {status:"Success", message:"Winning Courier is #{Bid.find(bid_id).courier.username}", orderStatus:"closed"}
       else
         render json: {status:"Failure", message: "This bid had been refused by Client"}
       end
