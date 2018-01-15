@@ -10,6 +10,7 @@ class Client < ApplicationRecord
   # , dependent: :destroy
   has_many :notifications, as: :user
 
+  mount_uploader :img, AvatarUploader
 
   validates :username, :email, :phone, presence: true
   #validates :username, :email, :phone, :password, :password_confirmation, presence: true

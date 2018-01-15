@@ -13,7 +13,6 @@ Rails.application.routes.draw do
     get 'auctions', to:'search#index'
     get 'notifications', to:'notifications#index'
     patch 'notification/check', to:'notifications#check'
-    # post 'filtered_open_auctions', to: 'auctions#filter_open_auctions'
   end
 
   # get 'open_auctoins', to: 'auctions#open_auctions'
