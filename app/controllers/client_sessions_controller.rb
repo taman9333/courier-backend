@@ -12,7 +12,7 @@ class ClientSessionsController < ApplicationController
   def response_obj(client)
     {
       auth_token: JsonWebToken.encode({client_id: client.id}),
-      client:{id:client.id, username:client.username, email:client.email, phone:client.phone}
+      client:{id:client.id, username:client.username, email:client.email, phone:client.phone, img:client.img}
     }
   end
 
