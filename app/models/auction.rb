@@ -1,9 +1,4 @@
 class Auction < ApplicationRecord
-
-	has_many :bids
-	belongs_to :order
-	validates :bid_deadline, :status, presence: true
-
 	has_many :notifications
 	searchkick
 	after_commit :reindex_product
@@ -12,7 +7,7 @@ class Auction < ApplicationRecord
     Auction.reindex
   end
 
-	scope :search_import, ->{where(status:"closed").includes(:order)}
+	scope :search_import, ->{where(status:"open").includes(:order)}
 
 	def search_data
 		{
@@ -22,5 +17,11 @@ class Auction < ApplicationRecord
 		}
 	end
 
-end
+	has_many :bids
+	# , dependent: :destroy
+	belongs_to :order
 
+
+
+	validates :bid_deadline, :status, presence: true
+end

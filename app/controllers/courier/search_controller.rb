@@ -18,14 +18,13 @@ class Courier::SearchController < ApplicationController
         end
       end
     end
-
-    @auctions = Auction.search(where:obj)
+    @auctions = Auction.search(where:obj).sort.reverse
     render :filter
 
   end
 
   def index
-    @auctions = Auction.where(status:"closed")
+    @auctions = Auction.where(status:"open").reverse
     render :index
   end
 
