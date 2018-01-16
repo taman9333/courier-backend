@@ -18,14 +18,14 @@ Rails.application.routes.draw do
   # get 'open_auctoins', to: 'auctions#open_auctions'
 
 
-  namespace :admin do
-    get 'couriers', to: 'couriers#index'
-    delete 'couriers', to: 'couriers#destroy'
-  end
+  # namespace :admin do
+  #   get 'couriers', to: 'couriers#index'
+  #   delete 'couriers', to: 'couriers#destroy'
+  # end
 
   get 'client/login', to: 'client_sessions#new'
   post 'client/sessions', to: 'client_sessions#create'
-
+  patch 'client/update_profile', to: 'clients#update'
 
   # post '/orders', to: 'orders#create'
 
