@@ -4,4 +4,5 @@ json.array!(@auctions) do |auction|
   json.id auction.id
   json.area auction.order.pickup_address.area
   json.weight auction.order.weight
+  json.order_id auction.order.id
 end
